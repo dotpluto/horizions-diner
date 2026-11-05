@@ -1,5 +1,7 @@
 package com.dotpluto.horizonsdiner;
 
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -18,6 +20,13 @@ public class HorizonsDiner {
 
     @SidedProxy(clientSide = "com.dotpluto.horizonsdiner.ClientProxy", serverSide = "com.dotpluto.horizonsdiner.CommonProxy")
     public static CommonProxy proxy;
+
+    public static CreativeTabs creativeTab = new CreativeTabs(HorizonsDiner.MODID + ".default") {
+        @Override
+        public Item getTabIconItem() {
+            return Items.woodChips;
+        }
+    };
 
     @Mod.EventHandler
     // preInit "Run before anything else. Read your config, create blocks, items, etc, and register them with the

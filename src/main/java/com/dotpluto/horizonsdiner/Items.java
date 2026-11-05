@@ -6,13 +6,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 
 public class Items {
-    public static CreativeTabs creativeTab = new CreativeTabs(HorizonsDiner.MODID + ".default") {
-        @Override
-        public Item getTabIconItem() {
-            return woodChips;
-        }
-    };
-
 
 
     public static ItemFood woodChips;
@@ -50,7 +43,7 @@ public class Items {
     static Item CreateItem(String id) {
         Item item = new Item()
             .setUnlocalizedName(id)
-            .setCreativeTab(creativeTab);
+            .setCreativeTab(HorizonsDiner.creativeTab);
         GameRegistry.registerItem(item, id);
         return item;
     }
