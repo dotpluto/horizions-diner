@@ -1,13 +1,14 @@
 package com.dotpluto.horizonsdiner.garden;
 
+import com.dotpluto.horizonsdiner.Config;
 import com.dotpluto.horizonsdiner.DropPool;
 import com.dotpluto.horizonsdiner.HorizonsDiner;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.GameRegistry.UniqueIdentifier;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -74,5 +75,74 @@ public abstract class BaseGarden extends BlockFlower implements IPlantable {
     @Override
     public Item getItemDropped(int meta, Random random, int fortune) {
         return getDropPool().getRandomItem(random);
+    }
+
+    @Override
+    public boolean onBlockActivated(World worldIn, int x, int y, int z, EntityPlayer player, int side, float subX, float subY, float subZ) {
+        if(!worldIn.isRemote) {
+            updateTick(worldIn, x, y, z, worldIn.rand);
+        }
+        return true;
+    }
+
+    @Override
+    public void updateTick(World worldIn, int myX, int myY, int myZ, Random random) {
+        if(Config.enableGardenSpread) {
+            int data = worldIn.getBlockMetadata(myX, myY, myZ);
+            if(data >= Config.gardenSpreadTimeMultiplier - 1) {
+                data = 0;
+                doGardenSpread(worldIn, myX, myY, myZ, random);
+            } else {
+                data =+ 1;
+            }
+            final int flags = 0; //do a server side only update without block updates
+            worldIn.setBlockMetadataWithNotify(myX, myY, myZ, data, flags);
+        }
+
+
+
+        //check if this garden is invalid and drop if it is
+        super.updateTick(worldIn, myX, myY, myZ, random);
+    }
+
+    public void doGardenSpread(World worldIn, int myX, int myY, int myZ, Random random) {
+        final int maximumHSpread = 4; //meaning in each direction so 4 means a square of 9x9
+        final int maximumVSpread = 1; // x means up x and x down
+
+        final int maxGardens = 5;
+
+        final int originX = myX - maximumHSpread;
+        final int originY = myY - maximumVSpread;
+        final int originZ = myZ - maximumHSpread;
+
+        //check if there are too many gardens
+        int countedGardens = 0;
+        for(int targetX = 0; targetX <= maximumHSpread * 2 + 1; targetX++) {
+            for(int targetY = 0; targetY <= maximumVSpread * 2 + 1; targetY++) {
+                for(int targetZ = 0; targetZ <= maximumHSpread * 2 + 1; targetZ++) {
+                    if(worldIn.getBlock(originX + targetX, originY + targetY, originZ + targetZ) instanceof BaseGarden) {
+                        countedGardens++;
+                    }
+                }
+            }
+        }
+
+        if(countedGardens >= maxGardens + 1) { //plus itself
+            return;
+        }
+
+
+        //for each y layer attempt to spread once
+        for(int layerY = 0; layerY <= maximumVSpread * 2 + 1; layerY++) {
+            int targetY = originY + layerY;
+            int targetX = originX + random.nextInt(maximumHSpread * 2 + 1);
+            int targetZ = originZ + random.nextInt(maximumHSpread * 2 + 1);
+            if(worldIn.blockExists(targetX, targetY, targetZ)
+                && canPlaceBlockAt(worldIn, targetX, targetY, targetZ)
+                && canBlockStay(worldIn, targetX, targetY, targetZ)) {
+                worldIn.setBlock(targetX, targetY, targetZ, this);
+                break; //only one garden per spread max
+            }
+        }
     }
 }
