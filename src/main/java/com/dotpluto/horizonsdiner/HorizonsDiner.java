@@ -18,6 +18,10 @@ public class HorizonsDiner {
     public static final String MODID = "horizonsdiner";
     public static final Logger LOG = LogManager.getLogger(MODID);
 
+    public static String appendModId(String rawId) {
+        return MODID + "." + rawId;
+    }
+
     @SidedProxy(clientSide = "com.dotpluto.horizonsdiner.ClientProxy", serverSide = "com.dotpluto.horizonsdiner.CommonProxy")
     public static CommonProxy proxy;
 

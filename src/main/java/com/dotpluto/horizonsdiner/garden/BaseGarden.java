@@ -24,7 +24,7 @@ import static cpw.mods.fml.common.registry.GameRegistry.findUniqueIdentifierFor;
 
 public abstract class BaseGarden extends BlockFlower implements IPlantable {
 
-    BaseGarden(String id) {
+    BaseGarden(String rawId) {
         super(0); //only used in the icon code for the vanilla flowers
 
         final float size = 0.8f; //fraction of block
@@ -35,9 +35,9 @@ public abstract class BaseGarden extends BlockFlower implements IPlantable {
         setStepSound(Block.soundTypeGrass);
         setTickRandomly(true);
         setCreativeTab(HorizonsDiner.creativeTab);
-        setBlockName(id);
+        setBlockName(HorizonsDiner.appendModId(rawId));
 
-        GameRegistry.registerBlock(this, id);
+        GameRegistry.registerBlock(this, rawId);
     }
 
     @Override

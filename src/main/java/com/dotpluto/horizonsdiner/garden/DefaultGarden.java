@@ -28,8 +28,8 @@ final public class DefaultGarden extends BaseGarden {
         )
     );
 
-    public DefaultGarden(String id) {
-        super(id);
+    public DefaultGarden(String rawId) {
+        super(rawId);
     }
 
     @Override

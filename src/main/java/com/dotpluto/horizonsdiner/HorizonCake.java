@@ -23,8 +23,9 @@ public class HorizonCake extends BlockCake implements IEdibleBlock {
 
     public HorizonCake() {
         super();
-        setBlockName("cake");
-        GameRegistry.registerBlock(this, "cake");
+        String rawId = "cake";
+        setBlockName(HorizonsDiner.appendModId(rawId));
+        GameRegistry.registerBlock(this, rawId);
     }
 
 

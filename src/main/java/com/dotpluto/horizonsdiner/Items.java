@@ -40,18 +40,18 @@ public class Items {
 
     }
 
-    static Item CreateItem(String id) {
+    static Item CreateItem(String rawId) {
         Item item = new Item()
-            .setUnlocalizedName(id)
+            .setUnlocalizedName(HorizonsDiner.appendModId(rawId))
             .setCreativeTab(HorizonsDiner.creativeTab);
-        GameRegistry.registerItem(item, id);
+        GameRegistry.registerItem(item, rawId);
         return item;
     }
 
-    static ItemFood CreateItemFood(String id, int hunger, float sat) {
+    static ItemFood CreateItemFood(String rawId, int hunger, float sat) {
         ItemFood item = new ItemFood(hunger, sat, false);
-        item.setUnlocalizedName(id);
-        GameRegistry.registerItem(item, id);
+        item.setUnlocalizedName(HorizonsDiner.appendModId(rawId));
+        GameRegistry.registerItem(item, rawId);
         return item;
     }
 }
