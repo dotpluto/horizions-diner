@@ -96,7 +96,7 @@ public abstract class BaseGarden extends BlockFlower implements IPlantable {
                 data = 0;
                 doGardenSpread(worldIn, myX, myY, myZ, random);
             } else {
-                data =+ 1;
+                data += 1;
             }
             final int flags = 0; //do a server side only update without block updates
             worldIn.setBlockMetadataWithNotify(myX, myY, myZ, data, flags);
