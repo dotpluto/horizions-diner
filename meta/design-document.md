@@ -1,10 +1,14 @@
 working title: horizon's dinner
 ## minimum-viable-product:
-mit licensed drop in replacement for pam's harvestcraft
+MIT licensed drop in replacement for pam's harvestcraft
 remove obsolete item's from pam (tough leather armor, bee hive, etc)?
+
 properly replace references to pam's from gtnh's side and write save migration code
 ## secondary-goals:
+find more interesting (and more original) mechanic for gardens with some foresight for viridium, etc
+prepare for more food
 light balance pass over food items owned by this mod
+redesign fresh water?
 ## stretch-goals:
 stronger balance pass
 provide platform for future food balancing
