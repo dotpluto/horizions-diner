@@ -5,6 +5,7 @@ import com.dotpluto.horizonsdiner.DropPool;
 import com.dotpluto.horizonsdiner.HorizonsDiner;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.GameRegistry.UniqueIdentifier;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -31,6 +32,7 @@ public abstract class BaseGarden extends BlockFlower implements IPlantable {
         final float gapSize = (1.0f - size) / 2;
         setBlockBounds(gapSize, 0.0f, gapSize, 1.0f - gapSize, size, 1.0f - gapSize);
 
+        setStepSound(Block.soundTypeGrass);
         setTickRandomly(true);
         setCreativeTab(HorizonsDiner.creativeTab);
         setBlockName(id);
@@ -79,8 +81,9 @@ public abstract class BaseGarden extends BlockFlower implements IPlantable {
 
     @Override
     public boolean onBlockActivated(World worldIn, int x, int y, int z, EntityPlayer player, int side, float subX, float subY, float subZ) {
-        if(!worldIn.isRemote) {
-            updateTick(worldIn, x, y, z, worldIn.rand);
+        if(!worldIn.isRemote && !player.capabilities.isCreativeMode) {
+            dropBlockAsItem(worldIn, x, y, z, new ItemStack(this));
+            worldIn.setBlockToAir(x, y, z);
         }
         return true;
     }
