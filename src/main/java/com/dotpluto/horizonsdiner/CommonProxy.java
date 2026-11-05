@@ -16,6 +16,7 @@ public class CommonProxy {
         HorizonsDiner.LOG.info("I am MyMod at version " + Tags.VERSION);
 
         Items.Register();
+        Blocks.Register();
     }
 
     // load "Do your mod setup. Build whatever data structures you care about. Register recipes." (Remove if not needed)

@@ -19,8 +19,8 @@ public class Items {
     public static Item juicer;
     public static Item pot;
 
-
-
+    //drop pools
+    public static DropPool defaultGardenDrops;
 
     public static void Register() {
         //food
@@ -35,7 +35,7 @@ public class Items {
         juicer = CreateItem("juicer");
         pot = CreateItem("pot");
 
-
+        defaultGardenDrops = new DropPool(new Item[]{pot, juicer, cuttingBoard});
 
 
     }
