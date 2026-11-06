@@ -19,6 +19,9 @@ public class Items {
     public static Item juicer;
     public static Item pot;
 
+    //seeds
+    public static SeedItem testSeed;
+
     //drop pools
     public static DropPool defaultGardenDrops;
 
@@ -34,6 +37,9 @@ public class Items {
         cuttingBoard = CreateItem("cutting_board");
         juicer = CreateItem("juicer");
         pot = CreateItem("pot");
+
+        //seeds
+        testSeed = new SeedItem("test_seed", () -> { return Blocks.testCrop; });
 
         defaultGardenDrops = new DropPool(new Item[]{pot, juicer, cuttingBoard});
 
