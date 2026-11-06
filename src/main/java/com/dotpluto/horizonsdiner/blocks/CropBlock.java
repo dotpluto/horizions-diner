@@ -1,13 +1,10 @@
-package com.dotpluto.horizonsdiner;
+package com.dotpluto.horizonsdiner.blocks;
 
+import com.dotpluto.horizonsdiner.HorizonsDiner;
 import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.common.registry.GameRegistry.UniqueIdentifier;
 import net.minecraft.block.BlockCrops;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.world.World;
 
-import java.util.Random;
 import java.util.function.Supplier;
 
 public class CropBlock extends BlockCrops {

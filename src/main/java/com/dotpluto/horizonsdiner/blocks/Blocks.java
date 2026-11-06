@@ -1,8 +1,6 @@
-package com.dotpluto.horizonsdiner;
+package com.dotpluto.horizonsdiner.blocks;
 
-import com.dotpluto.horizonsdiner.garden.BaseGarden;
-import com.dotpluto.horizonsdiner.garden.DefaultGarden;
-import scala.tools.nsc.doc.model.Def;
+import com.dotpluto.horizonsdiner.Items;
 
 public class Blocks {
     //gardens

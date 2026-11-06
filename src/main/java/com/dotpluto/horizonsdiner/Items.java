@@ -1,7 +1,7 @@
 package com.dotpluto.horizonsdiner;
 
+import com.dotpluto.horizonsdiner.blocks.Blocks;
 import cpw.mods.fml.common.registry.GameRegistry;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 

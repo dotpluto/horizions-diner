@@ -1,4 +1,4 @@
-package com.dotpluto.horizonsdiner.garden;
+package com.dotpluto.horizonsdiner.blocks;
 
 import com.dotpluto.horizonsdiner.Config;
 import com.dotpluto.horizonsdiner.DropPool;
