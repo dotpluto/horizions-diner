@@ -1,2 +1,3 @@
 - add nei collapsible groups
 - add thaumcraft aspects
+- possibly consider vending machine additions

@@ -2,6 +2,7 @@ working title: horizon's dinner
 ## minimum-viable-product:
 MIT licensed drop in replacement for pam's harvestcraft
 remove obsolete item's from pam (tough leather armor, bee hive, etc)?
+is the market replaced by the vending machine?
 
 properly replace references to pam's from gtnh's side and write save migration code
 ## secondary-goals:
