@@ -112,7 +112,7 @@ public abstract class BaseGarden extends BlockFlower implements IPlantable {
         final int maximumHSpread = 4; //meaning in each direction so 4 means a square of 9x9
         final int maximumVSpread = 1; // x means up x and x down
 
-        final int maxGardens = 5;
+        final int maxGardens = 3;
 
         final int originX = myX - maximumHSpread;
         final int originY = myY - maximumVSpread;
