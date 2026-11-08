@@ -21,6 +21,7 @@ public class HorizonsDiner {
     public static String appendModId(String rawId) {
         return MODID + "." + rawId;
     }
+    public static String appendTextureId(String raw) { return MODID + ":" + raw; };
 
     @SidedProxy(clientSide = "com.dotpluto.horizonsdiner.ClientProxy", serverSide = "com.dotpluto.horizonsdiner.CommonProxy")
     public static CommonProxy proxy;

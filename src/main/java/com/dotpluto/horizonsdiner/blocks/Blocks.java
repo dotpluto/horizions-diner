@@ -12,9 +12,13 @@ public class Blocks {
     //seeds
     public static CropBlock testCrop;
 
+    //misc
+    public static Candle candle;
+
     public static void Register() {
         garden = new DefaultGarden("default_garden");
         cake = new HorizonCake();
         testCrop = new CropBlock("test_crop", () -> { return Items.testSeed; }, () -> { return Items.woodChips; });
+        candle = new Candle();
     }
 }

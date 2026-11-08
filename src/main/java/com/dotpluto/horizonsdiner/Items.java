@@ -5,9 +5,21 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 
+import java.util.ArrayList;
+
 public class Items {
 
+    static boolean areFinalized = false;
+    static ArrayList<Runnable> finalizationRunnables = new ArrayList<>();
 
+    public static void runAfterFinalization(Runnable runnable) {
+        if(areFinalized) {
+            throw new RuntimeException("Items were already finalized.");
+        }
+        finalizationRunnables.add(runnable);
+    }
+
+    //food
     public static ItemFood woodChips;
 
     //tools
@@ -21,6 +33,9 @@ public class Items {
 
     //seeds
     public static SeedItem testSeed;
+
+    //misc
+    public static CandleItem candle;
 
     //drop pools
     public static DropPool defaultGardenDrops;
@@ -41,9 +56,13 @@ public class Items {
         //seeds
         testSeed = new SeedItem("test_seed", () -> { return Blocks.testCrop; });
 
+        //misc
+        candle = new CandleItem(Blocks.candle);
+
         defaultGardenDrops = new DropPool(new Item[]{pot, juicer, cuttingBoard});
 
-
+        areFinalized = true;
+        finalizationRunnables.forEach(Runnable::run);
     }
 
     static Item CreateItem(String rawId) {
